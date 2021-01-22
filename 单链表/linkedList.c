@@ -97,3 +97,52 @@ void printList(List L){
         p = p->Next;
     }
 }
+//查找元素是否在链表中
+int LocateElem(ElementType X, List L){
+    Position P = L->Next;
+    while(P!=NULL){
+        if(P->Element == X)return 1;
+        P = P->Next;
+    }
+    return 0;
+}
+//链表的复制
+List Duplicate(List L){
+    List D = initList();
+    Position P = D;
+    Position PL = L->Next;
+    while(PL!=NULL){
+        Insert(PL->Element, D, P);
+        P = P->Next;
+        PL = PL->Next;
+    }
+    return D;
+}
+//链表的并
+List Union(List LA, List LB){
+    List U = Duplicate(LA);
+    Position PB = LB->Next;
+    Position tep = getLast(U);
+    while(PB!=NULL){
+        if(!LocateElem(PB->Element, LA)){
+            Insert(PB->Element, U, tep);
+            tep = tep->Next;
+        }
+        PB = PB->Next;
+    }
+    return U;
+}
+//链表的交
+List Intersection(List LA, List LB){
+    List I = initList();
+    Position P = I;
+    Position PB = LB->Next;
+    while(PB!=NULL){
+        if(LocateElem(PB->Element, LA)){
+            Insert(PB->Element, I, P);
+            P = P->Next;
+        }
+        PB = PB->Next;
+    }
+    return I;
+}
