@@ -27,6 +27,9 @@ Position FindPrevious(ElementType X, List L);//根据值找到前一个节点
 void Insert(ElementType X, List L, Position P);//在指定位置插入节点
 void DeleteList(List L);//删除链表
 void printList(List L);//打印单链表
-Position Advance(Position P);
-ElementType Retrieve(Position P);
+int LocateElem(ElementType X, List L);//查看元素是否在链表中
+List Duplicate(List L);//复制链表
+List Union(List LA, List LB);//求两个链表的并
+List Intersection(List LA, List LB);//求两个链表的交
 #endif /* linkedList_h */
+
