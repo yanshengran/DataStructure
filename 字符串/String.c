@@ -1,7 +1,8 @@
 //
 //  String.c
 //  myString
-//
+//  注！这里的字符串模式匹配函数是我自己读了一篇博主的文章后自己实现的
+//  代码需要用到字符串的长度，并不适用于算法竞赛！
 //  Created by 颜圣燃 on 2021/1/23.
 //
 #define MAXLEN 255
@@ -76,4 +77,55 @@ SString SubString(SString S, int idx, int len){
         j++;
     }
     return S1;
+}
+//BF算法实现的字符串模式匹配 O(n*m)
+int IndexBF(SString S, SString Sub, int pos){
+    int i = pos, j = 0;
+    while(i < S->len && j < Sub->len){
+        if(S->ch[i] == Sub->ch[j]){
+            i++;
+            j++;
+        }else{
+            i = i-j+1;
+            j = 0;
+        }
+    }if(j >= Sub->len)return i - Sub->len;
+     else return -1;
+}
+//KMP算法实现的字符串模式匹配 O(n+m)
+int IndexKMP(SString S, SString Sub, int pos){
+    int i = pos, j = 0;
+    int* next = GetNext(Sub);
+    while(i < S->len && j < Sub->len){
+        if(j == -1 || S->ch[i] == Sub->ch[j]){
+            i++;
+            j++;
+        }else j = next[j]; //匹配失败j回溯到next[j]
+    }
+    if(j == Sub->len)return i-j;
+    else return -1;
+}
+//求解next数组
+int* GetNext(SString Sub){
+    int* next = (int*)malloc(sizeof(int)*Sub->len);
+    if(next == NULL){printf("动态内存申请失败!\n");return NULL;}
+    if(Sub->len == 0){printf("模式串长度为0");return NULL;}
+    next[0] = -1;
+    if(Sub->len > 1){
+        next[1] = 0;
+        int j = 1, k = next[j];
+        while(j < Sub->len){
+            j++; //注意这里j加一了
+            if(Sub->ch[j-1] == Sub->ch[k]){//如果j-1与next[j-1]处的字符相等
+                next[j] = k+1;
+            }else{//若不相等，回溯k令k=next[k]
+                while(Sub->ch[k] != Sub->ch[j-1] && k != -1){
+                    k = next[k];
+                }
+                if(k == -1)next[j] = 0;
+                else next[j] = k+1;
+            }
+        }
+    }
+    return next;
 }
