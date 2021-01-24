@@ -19,5 +19,7 @@ int StrCompare(SString S1, SString S2);//比较两个字符串
 void ClearString(SString S); //清空一个字符串
 SString StrConcat(SString S1, SString S2); //字符串拼接
 SString SubString(SString S, int idx, int len); //返回从下标为idx开始长度为len的子串
-
+int IndexBF(SString S, SString Sub, int pos); //BF算法实现的字符串模式匹配
+int IndexKMP(SString S, SString Sub, int pos); //KMP算法实现的字符串模式匹配
+int* GetNext(SString Sub); //求解next数组
 #endif /* String_h */
