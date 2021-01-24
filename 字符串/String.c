@@ -117,7 +117,8 @@ int* GetNext(SString Sub){
         while(j < Sub->len){
             j++; //注意这里j加一了
             if(Sub->ch[j-1] == Sub->ch[k]){//如果j-1与next[j-1]处的字符相等
-                next[j] = k+1;
+                next[j] = k + 1;
+                k++; // k == next[j]
             }else{//若不相等，回溯k令k=next[k]
                 while(Sub->ch[k] != Sub->ch[j-1] && k != -1){
                     k = next[k];
