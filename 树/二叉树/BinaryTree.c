@@ -48,7 +48,7 @@ Node FindMax(BinaryTree T){
 }
 BinaryTree Insert(ElementType X, BinaryTree T){
     if(T == NULL){
-        BinaryTree T = (BinaryTree)malloc(sizeof(struct TreeNode));
+        T = (BinaryTree)malloc(sizeof(struct TreeNode));
         if(T == NULL){printf("动态内存申请失败！");}
         T->element = X;
         T->left = NULL;
