@@ -24,4 +24,6 @@ BinaryTree Delete(ElementType X, BinaryTree T);
 void PreOrderTraversal(BinaryTree T);
 void PostOrderTraversal(BinaryTree T);
 void InOrderTraversal(BinaryTree T);
+void InOrderTraversalStack(BinaryTree T);//二叉树遍历的非递归实现
+void LevelTraversal(BinaryTree T);//二叉树的层次遍历
 #endif /* BinaryTree_h */
