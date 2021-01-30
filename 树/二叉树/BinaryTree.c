@@ -131,3 +131,22 @@ void LevelTraversal(BinaryTree T){//二叉树的层次遍历
         front = (front+1)%100;
     }
 }
+BinaryTree CreateBiTreeByString(char* str, int* idx){//通过前序遍历字符串构造二叉树
+    if(str[*idx] != '#'){
+        BinaryTree Node = (BinaryTree)malloc(sizeof(struct TreeNode));
+        Node->element = str[*idx] - '0';
+        (*idx)++;
+        Node->left = CreateBiTreeByString(str, idx);
+        (*idx)++;
+        Node->right = CreateBiTreeByString(str, idx);
+        return Node;
+    }else return NULL;
+}
+BinaryTree BiTreeCpy(BinaryTree T1){//二叉树的复制
+    if(T1 == NULL)return NULL;
+    BinaryTree ret = (BinaryTree)malloc(sizeof(struct TreeNode));
+    ret->element = T1->element;
+    ret->left = BiTreeCpy(T1->left);
+    ret->right = BiTreeCpy(T1->right);
+    return ret;
+}
