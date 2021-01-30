@@ -26,4 +26,6 @@ void PostOrderTraversal(BinaryTree T);
 void InOrderTraversal(BinaryTree T);
 void InOrderTraversalStack(BinaryTree T);//二叉树遍历的非递归实现
 void LevelTraversal(BinaryTree T);//二叉树的层次遍历
+BinaryTree CreateBiTreeByString(char* str, int* idx); //根据先序遍历字符串创建二叉树
+BinaryTree BiTreeCpy(BinaryTree T1);//二叉树的复制
 #endif /* BinaryTree_h */
