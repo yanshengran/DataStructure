@@ -1,0 +1,26 @@
+struct TreeNode* mybuild(int* preorder, int preStart, int* inorder, int inStart, int inEnd){
+    if(inStart > inEnd)return NULL;//结束条件
+    else{
+        struct TreeNode* root = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+        root->val = preorder[preStart]; //得到根结点
+        int in_left_end, in_right_start, pre_left_start, pre_right_start, left_size = 0;//左子树的end
+        for(int i = inStart; i <= inEnd; i++){
+            if(inorder[i] == preorder[preStart]){
+                in_left_end = i-1;
+                in_right_start = i+1;
+                left_size = i-inStart;
+                break;
+            }
+        }
+        //左子树的preStart就是preStart+1
+        //右子树的preStart是preStart+左子树的节点数+1
+        pre_left_start = preStart + 1;
+        pre_right_start = preStart + left_size + 1; //check
+        root->left = mybuild(preorder, pre_left_start, inorder, inStart, in_left_end);
+        root->right = mybuild(preorder, pre_right_start, inorder, in_right_start, inEnd);
+        return root;
+    }
+}
+struct TreeNode* buildTree(int* preorder, int preorderSize, int* inorder, int inorderSize){
+    return mybuild(preorder, 0, inorder, 0, inorderSize-1);
+}
