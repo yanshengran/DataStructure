@@ -14,5 +14,10 @@ int main(int argc, const char * argv[]) {
     CreateHuffmanTree(&HT, n, weights);
     printf("is HT == NULL %d\n", HT == NULL);
     PrintStructArray(&HT, 8);
+    printf("\n");
+    char** ret = CreateHuffmanCode(&HT, 8);
+    for(int i = 0; i < 8; i++){
+        printf("code = %s\n",ret[i]);
+    }
     return 0;
 }
