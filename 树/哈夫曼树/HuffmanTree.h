@@ -14,4 +14,5 @@ typedef struct HTNode* HuffmanTree;
 void CreateHuffmanTree(HuffmanTree* HT, int n, int* weights);
 void PrintStructArray(HuffmanTree* HT, int n);
 void Select(HuffmanTree* HT, int* min_idx, int* nmin_idx, int size);
+char** CreateHuffmanCode(HuffmanTree* HT, int n);
 #endif /* HuffmanTree_h */
