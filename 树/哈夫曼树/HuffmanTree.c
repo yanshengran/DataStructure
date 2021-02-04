@@ -78,3 +78,26 @@ void Select(HuffmanTree* HT, int* min_idx, int* nmin_idx, int size){//选出两�
         }
     }
 }
+char** CreateHuffmanCode(HuffmanTree* HT, int n){
+    /**
+     构建哈夫曼编码
+     */
+    char** HC = malloc(sizeof(char*)*(n));
+    char* cd = (char*)malloc(sizeof(char)*n);
+    cd[n-1] = '\0';
+    HuffmanTree P = *HT;
+    for(int i = 0; i < n; i++){
+        int start = n-1, c = i, f = (P+i)->parent;
+        while(f != -1){
+            start--;
+            if((P+f)->lch == c)cd[start] = '0';
+            else cd[start] = '1';
+            c = f;
+            f = (P+f)->parent;
+        }
+        HC[i] = (char*)malloc(sizeof(char)*(n-start));
+        strcpy(HC[i], &cd[start]);
+    }
+    free(cd);
+    return HC;
+}
